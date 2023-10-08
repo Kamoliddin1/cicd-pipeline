@@ -41,15 +41,15 @@ pipeline {
             steps {
                 script {
                     def dockerImageTag = 'nodedev:v1.0'
-                    def port = 3000 // Default port for 'dev' branch
+                    def port = 3001 // Default port for 'dev' branch
 
                     if (env.BRANCH_NAME == 'main') {
                         dockerImageTag = 'nodemain:v1.0'
-                        port = 3001 // Port for 'main' branch
+                        port = 3000 // Port for 'main' branch
                     }
 
                     sh "docker run -d --expose ${port} -p ${port}:${port} --name my-app ${dockerImageTag}"
-                }
+                } 
             }
         }
     }
